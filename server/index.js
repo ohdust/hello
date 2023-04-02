@@ -2,7 +2,7 @@ const http=require("http");
 const express=require("express");
 const cors = require("cors");
 const socketIO = require("socket.io");
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 
 const app = express();
@@ -13,8 +13,13 @@ const users=[{}];
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    database: 'eidendale'
-})
+    database: 'eidendale',
+    password: 'letter5723'
+});
+
+db.connect(function(err){
+    if (err) console.log(err)
+});
 
 
 app.use(cors());

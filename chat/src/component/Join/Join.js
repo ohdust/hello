@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import "./Join.css";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
-import Navigation from "../Navigation/Navigation.js"
 
 let user;
 
