@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { user } from "../Join/Join";
 import socketIo from "socket.io-client";
-import "./Chat.css";
+import "./Home.css";
 import sendLogo from "../../images/send.png";
 import Message from "../Message/Message";
 import ReactScrollToBottom from "react-scroll-to-bottom";
@@ -10,11 +10,11 @@ import closeIcon from "../../images/closeIcon.png"
 let socket;
 const ENDPOINT ="http://localhost:4500/";
 
-const Chat = () => {
+const Home = () => {
 
 const [id, setid]=useState("");
 const [messages, setMessage]=useState([])
-  
+
   const send = () => {
     const message = document.getElementById('chatInput').value;
     socket.emit('message', { message, id });
@@ -71,7 +71,7 @@ useEffect(() => {
     <div className="chatPage">
        <div className="chatContainer">
            <div className="header">
-                <h2>Chat Application</h2>
+                <h2>Gardens</h2>
             <a href="/" >   <img src={closeIcon} alt="Close"  /></a>
            </div>
            <ReactScrollToBottom className="chatBox">
@@ -80,12 +80,12 @@ useEffect(() => {
            <div className="inputBox">
             <input onKeyPress={(event)=>event.key === 'Enter' ? send():null} type="text" id="chatInput"/>
             <button onClick={send} className="sendBtn"><img src={sendLogo} alt="Send"/></button>
-        
+
            </div>
        </div>
-            
+
     </div>
   )
 }
 
-export default Chat
+export default Home;

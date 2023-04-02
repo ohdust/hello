@@ -2,6 +2,7 @@ const http=require("http");
 const express=require("express");
 const cors = require("cors");
 const socketIO = require("socket.io");
+const mysql = require('mysql');
 
 
 const app = express();
@@ -9,10 +10,16 @@ const port = 4500 || process.env.PORT;
 
 const users=[{}];
 
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'eidendale'
+})
+
 
 app.use(cors());
 app.get("/",(req,res)=>{
-      res.send("hell its working"); 
+      res.send("hell its working");
 })
 
 const server= http.createServer(app);
@@ -38,7 +45,7 @@ io.on("connection",(socket)=>{
               socket.broadcast.emit('leave',{user:"Admin",message:`${users[socket.id]} has left`});
               console.log(`user left`);
         })
-       
+
 
 });
 
